@@ -1,0 +1,289 @@
+import java.util.Scanner;
+public class Main {
+       
+    
+     
+     public static Scanner input = new Scanner (System.in);
+     public static File_Handle DATA = new File_Handle();
+      
+           
+    /**
+     * @param args the command line arguments
+     */
+    
+    public static int menu()
+    {
+        System.out.println("1. Term Retrieval. ");
+        System.out.println("2. Boolean Retrieval. ");
+        System.out.println("3. Ranked Retrieval.");
+        System.out.println("4. Indexed Documents.");
+        System.out.println("5. Indexed Tokens.");
+        System.out.println("6. Exist.");
+        
+        System.out.println("Enter your Choice: ");
+        int choice = input.nextInt();
+        return choice;
+    }
+    ///////////////////////////INDEXED DOCUMENT FUNCTION//////////////////////////////////////////
+    
+    public static void Indexed_Documents_menu()
+    {
+        System.out.println("################# Indexed Documents ############## ");
+        Indexed_Documents();
+        System.out.println("");
+    }  
+    
+     public static void Indexed_Documents()
+    {
+        
+        System.out.println("Every Documents and The Words it Contains");
+        for ( int i = 0 ; i < 50 ; i++ )
+        {    
+            
+            int size = DATA.index.DocumentArrayofIndex[i].wordsInDocument.size();
+            System.out.println("Document Number: " + i +"  Size: " +  size   );
+            System.out.println("-----------------------------------------------------------------" );
+        }
+        
+    }
+    
+    //////////////////////////INDEXED TOKENS FUNCTION////////////////////////////////////////
+    
+    
+   
+    public static void Indexed_Tokens_menu()
+    {
+        System.out.println("################### Indexed Tokens #################### ");
+        Indexed_Tokens();
+        System.out.println("");
+    }
+    
+    public static void Indexed_Tokens()
+    {
+        System.out.println("Every Token and the Documents it Existed in");
+        DATA.invertedindexBST.InvertedIndexBSTtree.PrintBSTnodeData();
+        
+    }  
+    
+    
+   /////////////////////////THE MAIN MENUE////////////////////////////////////////////////
+    
+    
+    public static void main(String[] args) {
+
+     DATA.LoadData("/Users/lavender/Desktop/project212csc/stop.txt", "/Users/lavender/Desktop/project212csc/dataset.csv");
+
+        
+        int choice;
+         
+        do { 
+                choice = menu();
+                switch (choice)
+                {
+                    //term Retrieval
+                    case 1:
+                            Retrieval_Term();
+                            break;
+
+                    //Boolean Retrieval: to enter a Boolean query that will return a set of unranked documents  
+                    case 2:
+                            Boolean_Retrieval_menu();
+                            break;
+                            
+                    //Ranked Retrieval: to enter a query that will return a ranked list of documents with their scores 
+                    case 3:
+                            Ranked_Retrieval_menu();
+                            break;
+                    
+                    //Indexed Documents: to show number of documents in the index 
+                    case 4:
+                            Indexed_Documents_menu();
+                            break;
+                    
+                    //Indexed Tokens: to show number of vocabulary and tokens in the index  
+                    case 5:
+                            Indexed_Tokens_menu();
+                            break;
+                     
+                    case 6:
+                            break;
+                            
+                    default:       
+                            System.out.println("Choose from the menue above!");
+                }
+        } while (choice != 6);
+    }
+    
+    
+    
+    /////////////////////////TERM RETRIEVAL FUNCTION////////////////////////////////
+
+    public static void Retrieval_Term()
+    {
+        int choice1 ;
+        System.out.println("###################### Retrieval Term #######################");
+        
+        System.out.println("1. index");
+        System.out.println("2. inverted index");
+        System.out.println("3. inverted index using BST");
+        System.out.println("4. inverted index using AVL");
+        System.out.println("Enter The number of The Data Structure you Want To Use: ");
+        choice1 = input.nextInt();
+        
+        System.out.println("Enter the Term you Want To Retrieve: ");
+        String str = "";
+        str = input.next();
+        
+        System.out.print("Result Documents: ");
+        printBoolean(Term_Retrieval(str.trim().toLowerCase(), choice1 ));
+        System.out.println("\n");
+
+    }
+    
+    
+     public static boolean []  Term_Retrieval(String str , int DSType)
+    {
+        boolean [] docs = new boolean [50] ;
+        for ( int i = 0 ; i < docs.length ; i++)
+            docs[i] = false;
+
+        switch (DSType)
+        {
+            case 1 :
+                docs = DATA.index.getDocumentArray(str);
+                break; 
+            case 2 :
+               if (DATA.invertedindex.found(str))
+                    docs = DATA.invertedindex.invertedindex_wordDocs.retrieve().getDocs();
+                break;
+             case 3:
+                if (DATA.invertedindexBST.found(str))
+                    docs = DATA.invertedindexBST.InvertedIndexBSTtree.retrieve().getDocs();
+                break;
+            case 4:
+                if (DATA.invertedindexAVL.found(str))
+                    docs = DATA.invertedindexAVL.InvertedInedAVLtree.retrieve().getDocs();
+                break;
+                
+            default :
+                System.out.println("Choose from the menue above!");
+        }
+        return docs;
+    }
+    
+   ///////////////////////////BOOLEAN RETRIEVAL FUNCTION///////////////////////////////////////  
+     
+    public static void Boolean_Retrieval_menu()
+    {
+        System.out.println("####################### Boolean Retrieval ########################");
+        System.out.println("1. index");
+        System.out.println("2. inverted index");
+        System.out.println("3. inverted index using BST");
+        System.out.println("4. inverted index using AVL");
+        System.out.println("Enter The number of The Data Structure you Want To Use: ");
+        int choice1 = input.nextInt();
+
+        System.out.println("Enter the boolean Term you Want To Retrieve( AND / OR) : ");
+        String str = input.nextLine();
+        str = input.nextLine();
+            
+        System.out.print("Q#: ");
+        System.out.println(str);
+
+        System.out.print("Result: ");
+        printBoolean(Boolean_Retrieval(str.trim().toUpperCase(), choice1 ));
+        System.out.println("\n");
+    
+    }
+    
+    
+    public static boolean []  Boolean_Retrieval(String str , int DSType)
+    {
+        boolean [] docs = new boolean [50] ;
+        for ( int i = 0 ; i < docs.length ; i++)
+            docs[i] = false;
+  
+        switch (DSType)
+        {
+            case 1 :
+                System.out.println("BooleanRetrieval using index list");
+                docs = DATA.index.EvaluateExpression(str);
+                break;
+            case 2:    
+                System.out.println(" BooleanRetrieval using inverted index list");
+                docs = DATA.invertedindex.EvaluateExpression(str);
+                break;
+            case 3:
+                System.out.println(" BooleanRetrieval using Binary Search Tree");
+                docs = DATA.invertedindexBST.EvaluateExpression(str);
+                break;
+            case 4:
+                System.out.println(" Boolean Retrieval using AVL");
+                docs = DATA.invertedindexAVL.EvaluateExpression(str);
+                break;
+          
+            default :  
+                System.out.println("Choose from the Menue Above: ");
+                
+        }
+        return docs;
+    }
+    
+    
+    
+    public static void printBoolean(boolean [] result)
+    {
+        TermBoolean t = new TermBoolean ("", result);
+        System.out.println(t);
+    } 
+    
+    
+  ///////////////////////////////RANKED RETRIEVAL FUNCTION/////////////////////
+    
+    public static void Ranked_Retrieval_menu()
+    {     
+        System.out.println("####################### Ranked Retrieval #################### ");
+        System.out.println("1. index");
+        System.out.println("2. inverted index");
+        System.out.println("3. inverted index using Binary Search Tree");
+        System.out.println("4. inverted index using AVL");
+        System.out.println("Enter The number of The Data Structure you Want To Use: ");
+        int choice1 = input.nextInt();
+
+        System.out.print("Enter the Term you Want to Retrieve: ");
+        String str = input.nextLine();
+        str = input.nextLine();
+
+        System.out.println("## Q: " + str);
+        System.out.println("DocIDt\tScore");
+        
+        
+        switch (choice1)
+        {
+            case 1:     
+                System.out.println("Retrieve Rank from index list");
+                DATA.indexranked.FrequencyCount(str); 
+                break;
+            case 2:
+                System.out.println("Retrieve Rank from inverted index list");
+                DATA.invertedindexranked.FrequencyCount(str);
+                break;
+            case 3:
+                System.out.println("Retrieve Rank from Binary Search Tree");
+                DATA.invertedindexBSTranked.FrequencyCount(str); 
+                break;
+            case 4:
+                System.out.println("Retrieve Rank from AVL");
+                DATA.invertedindexAVLranked.FrequencyCount(str);  
+                break;
+                 
+                 
+               default:       
+                System.out.println("Choose from the Menue Above: ");
+        }
+        System.out.println("\n");
+    }
+    
+
+    
+}  
