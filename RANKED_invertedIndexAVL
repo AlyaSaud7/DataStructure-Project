@@ -171,5 +171,3 @@ private static void merge(FreqInDoc[] array, int left, int mid, int right) {
     }
 }   
     
-
-}
