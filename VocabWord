@@ -15,5 +15,5 @@ public class VocabWord {
         return word;
     }
     
-    
+    }
     
