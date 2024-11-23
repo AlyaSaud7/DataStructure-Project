@@ -1,12 +1,17 @@
 package ds;
+
 import javax.swing.JOptionPane;
+
 public class Main extends javax.swing.JFrame {
+
     public static File_Handle DATA = new File_Handle();
+
     public Main() {
         initComponents();
     }
+
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
@@ -546,29 +551,29 @@ public class Main extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }                                        
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }                                           
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }                                          
 
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox5ActionPerformed
+    }                                          
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }                                           
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         ///////////////////////////////RANKED RETRIEVAL FUNCTION/////////////////////
         jTextArea4.setText("");
         int select = 0;
@@ -589,7 +594,6 @@ public class Main extends javax.swing.JFrame {
         }
         jTextArea4.append("######## Ranked Retrieval ########\n");
         jTextArea4.append("## Q: " + userInput + "\n");
-        jTextArea4.append("DocID\tScore\n");
         switch (select) {
             case 1:
                 jTextArea4.append("Retrieve Rank from index list\n");
@@ -610,17 +614,17 @@ public class Main extends javax.swing.JFrame {
         }
         jTextArea4.append("\n");
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }                                        
 
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
+    }                                          
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }                                           
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         ///////////////////////////BOOLEAN RETRIEVAL FUNCTION///////////////////////////////////////  
         jTextArea3.setText("");
         int select = 0;
@@ -640,15 +644,15 @@ public class Main extends javax.swing.JFrame {
             select = 4;
         }
         jTextArea3.append("############ Boolean Retrieval ###############\n");
-        jTextArea3.append("Q#: ");
+        jTextArea3.append("#Q: ");
         jTextArea3.append(userInput);
         jTextArea3.append("\nResult doc IDs: ");
         jTextArea3.append(printBoolean(Boolean_Retrieval(userInput.trim().toUpperCase(), select)));
 
 
-        jTextArea3.append("\n");    }//GEN-LAST:event_jButton3ActionPerformed
+        jTextArea3.append("\n");    }                                        
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         /////////////////////////TERM RETRIEVAL FUNCTION////////////////////////////////
         jTextArea8.setText("");
         int select = 0;
@@ -672,18 +676,18 @@ public class Main extends javax.swing.JFrame {
         jTextArea8.append("Result doc IDs: ");
         jTextArea8.append(printBoolean(Term_Retrieval(userInput.trim().toLowerCase(), select)));
         jTextArea8.append("\n");
-        
-    }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    }                                        
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }                                           
 
-    private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox6ActionPerformed
+    private void jComboBox6ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox6ActionPerformed
+    }                                          
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         //////////////////////////INDEXED TOKENS FUNCTION////////////////////////////////////////
         jTextArea9.setText("");
         jTextArea9.append("######## Indexed Tokens ########\n");
@@ -692,9 +696,9 @@ public class Main extends javax.swing.JFrame {
         jTextArea9.append(tokens);
         jTextArea9.append("\n");
 
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }                                        
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         ///////////////////////////INDEXED DOCUMENT FUNCTION//////////////////////////////////////////
         jTextArea6.setText("");
         jTextArea6.append("############ Indexed Documents ############\n");
@@ -705,7 +709,7 @@ public class Main extends javax.swing.JFrame {
             jTextArea6.append("\n");
         }
 
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }                                        
     public String printBoolean(boolean[] result) {
         TermBoolean t = new TermBoolean("", result);
         return t.toString() + "\n";
@@ -779,7 +783,7 @@ public class Main extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -825,6 +829,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
 }
